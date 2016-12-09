@@ -1,0 +1,21 @@
+/*Ограничение скорости для автомобиля*/
+
+stock LimitingVehicleSpeed(const vehicleid)
+{
+    new Float: velocity_x,
+        Float: velocity_y,
+        Float: velocity_z;
+
+    const MAX_VEHICLE_SPEED = 50;//Максимальная скорость
+    
+    GetVehicleVelocity(vehicleid, velocity_x, velocity_y, velocity_z);
+    
+    if(floatround(VectorSize(velocity_x, velocity_y, velocity_z) * 100.0) >= MAX_VEHICLE_SPEED)
+        SetVehicleVelocity(vehicleid, velocity_x*0.99, velocity_y*0.99, velocity_z);
+        
+    return 1;
+}  
+
+
+/*Пример использования*/
+LimitingVehicleSpeed(GetPlayerVehicleID(playerid));  
